@@ -81,9 +81,11 @@ task('deploy', [
     'artisan:config:cache', // | Laravel specific steps
     'artisan:optimize',     // |
     'artisan:migrate',      // |
-    'artisan:passport:keys​', // For Passport
+    // 'artisan:passport:keys​', // For Passport
 
     'deploy:symlink',
     'deploy:unlock',
     'cleanup',
 ]);
+
+task('artisan:passport:keys', artisan('passport:keys'));
