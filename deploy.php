@@ -20,15 +20,16 @@ set('shared_dirs', ['storage']);
 // Configuring the rsync exclusions.
 // You'll want to exclude anything that you don't want on the production server.
 add('rsync', [
-    'exclude' => [
-        '.git',
-        '/.env',
-        '/storage/',
-        '/vendor/',
-        '/node_modules/',
-        '.github',
-        'deploy.php',
-    ],
+ 'exclude' => [
+            '.git',
+            '/.env',
+            '/storage/framework/',
+            '/storage/logs/',
+            '/vendor/',
+            '/node_modules/',
+            '.gitlab-ci.yml',
+            'deploy.php',
+        ],
 ]);
 
 // Set up a deployer task to copy secrets to the server.
