@@ -7,6 +7,9 @@ require 'recipe/laravel.php';
 require 'recipe/rsync.php';
 require 'recipe/common.php';
 
+
+add('recipes', ['laravel']);
+
 set('writable_use_sudo', false);
 
 set('application', 'clafiya-api');
