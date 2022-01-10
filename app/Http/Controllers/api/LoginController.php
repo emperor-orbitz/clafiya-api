@@ -36,7 +36,7 @@ class LoginController extends Controller
             return response()->json(['data'=>auth()->user(),'timestamp'=>$time, 'token'=>$token, 'message'=>'Authentication successful']);
 
             } catch (\Throwable $th) {
-                
+                // dd($th);
             return response()->json(['data'=>[],'timestamp'=>$time, 'message'=>'Server Error'],500);
 
         }
