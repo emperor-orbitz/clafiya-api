@@ -7,6 +7,8 @@ require 'recipe/laravel.php';
 require 'recipe/rsync.php';
 require 'recipe/common.php';
 
+
+set('writable_use_sudo', false);
 set('application', 'clafiya-api');
 set('ssh_multiplexing', true); // Speed up deployment
 set('keep_releases', 5);
