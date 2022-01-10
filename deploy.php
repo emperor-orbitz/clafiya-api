@@ -8,7 +8,52 @@ require 'recipe/rsync.php';
 require 'recipe/common.php';
 
 
-add('recipes', ['laravel']);
+// add('recipes', ['laravel']);
+
+
+
+function artisan($command, $options = [])
+{
+    return function () use ($command, $options) {
+
+        // Ensure the artisan command is available on the current version.
+        $versionTooEarly = array_key_exists('min', $options)
+            && laravel_version_compare($options['min'], '<');
+
+        $versionTooLate = array_key_exists('max', $options)
+            && laravel_version_compare($options['max'], '>');
+
+        if ($versionTooEarly || $versionTooLate) {
+            return;
+        }
+
+        // Ensure we warn or fail when a command relies on the ".env" file.
+        if (in_array('failIfNoEnv', $options) && !test('[ -s {{release_or_current_path}}/.env ]')) {
+            throw new \Exception('Your .env file is empty! Cannot proceed.');
+        }
+
+        if (in_array('skipIfNoEnv', $options) && !test('[ -s {{release_or_current_path}}/.env ]')) {
+            warning("Your .env file is empty! Skipping...</>");
+            return;
+        }
+
+        $artisan = '{{release_or_current_path}}/artisan';
+
+        // Run the artisan command.
+        $output = run("{{bin/php}} $artisan $command");
+
+        // Output the results when appropriate.
+        if (in_array('showOutput', $options)) {
+            writeln("<info>$output</info>");
+        }
+    };
+}
+
+function laravel_version_compare($version, $comparator)
+{
+    return version_compare(get('laravel_version'), $version, $comparator);
+}
+
 
 set('writable_use_sudo', false);
 
