@@ -14,6 +14,9 @@ set('rsync_src', function () {
     return __DIR__; // If your project isn't in the root, you'll need to change this.
 });
 
+set('shared_files', ['.env']);
+set('shared_dirs', ['storage']);
+
 // Configuring the rsync exclusions.
 // You'll want to exclude anything that you don't want on the production server.
 add('rsync', [
