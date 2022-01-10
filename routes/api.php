@@ -14,15 +14,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-// Route::middleware('auth:api')->get('/user', function (Request $request) {
-//     return $request->user();
-// });
 
 
 Route::prefix('/user')->group(function (){
     Route::post('/register', 'api\RegistrationController@register');
     Route::post('/login', 'api\LoginController@login');
-    Route::middleware('auth:api')->get('/all', 'api\RegistrationController@allUser');
+    // Route::middleware('auth:api')->get('/all', 'api\RegistrationController@allUser');
 
 
 });
