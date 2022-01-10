@@ -22,8 +22,8 @@ set('shared_dirs', ['storage']);
 add('rsync', [
     'exclude' => [
         '.git',
-//         '/.env',
-//         '/storage/',
+        '/.env',
+        '/storage/',
         '/vendor/',
         '/node_modules/',
         '.github',
