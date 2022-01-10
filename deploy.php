@@ -86,9 +86,9 @@ task('deploy', [
 ]);
 
 // run('echo hello world');
-run('echo hello world');
-run('cd {{deploy_path}}');
-run('cd /current && php artisan passport:install');
+// run('echo hello world');
+// run('cd {{deploy_path}}');
+// run('cd /current && php artisan passport:install');
 
 // run('password %secret%', secret: getenv('CI_SECRET'));
 // run('curl medv.io', timeout: 5);
