@@ -19,7 +19,7 @@ set('rsync_src', function () {
 add('rsync', [
     'exclude' => [
         '.git',
-        '/.env',
+//         '/.env',
 //         '/storage/',
         '/vendor/',
         '/node_modules/',
