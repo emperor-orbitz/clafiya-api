@@ -74,21 +74,16 @@ task('deploy', [
     'deploy:shared',
     'deploy:vendors',
     'deploy:writable',
+
 //     'artisan:passport:install',
     'artisan:storage:link', // |
     'artisan:view:cache',   // |
     'artisan:config:cache', // | Laravel specific steps
     'artisan:optimize',     // |
     'artisan:migrate',      // |
+    'artisan:passport:keys​', // For Passport
+
     'deploy:symlink',
     'deploy:unlock',
     'cleanup',
 ]);
-
-// run('echo hello world');
-// run('echo hello world');
-// run('cd {{deploy_path}}');
-// run('cd /current && php artisan passport:install');
-
-// run('password %secret%', secret: getenv('CI_SECRET'));
-// run('curl medv.io', timeout: 5);
