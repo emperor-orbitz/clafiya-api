@@ -28,3 +28,4 @@ jobs:
         run: |
          pwd
          dep deploy production --tag=${{ env.GITHUB_REF }} -vvv
+         cd /var/www/html/clafiya/current && php artisan passport:install
