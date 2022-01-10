@@ -9,13 +9,19 @@ require 'recipe/common.php';
 
 set('application', 'clafiya-api');
 set('ssh_multiplexing', true); // Speed up deployment
-
+set('keep_releases', 5);
 set('rsync_src', function () {
     return __DIR__; // If your project isn't in the root, you'll need to change this.
 });
 
 set('shared_files', ['.env']);
-set('shared_dirs', ['storage']);
+set('shared_dirs', [ // Shared dirs
+    'storage/app',
+    'storage/framework/cache',
+    'storage/framework/sessions',
+    'storage/framework/views',
+    'storage/logs',
+]);
 
 // Configuring the rsync exclusions.
 // You'll want to exclude anything that you don't want on the production server.
@@ -50,6 +56,10 @@ host('clafiya-api') // Name of the server
 
 
 after('deploy:failed', 'deploy:unlock'); // Unlock after failed deploy
+
+set('shared_files', ['.env']); // Shared Files
+set('writable_dirs', ['storage', 'vendor']); // Chmod stuff
+
 
 desc('Deploy the application');
 task('deploy', [
